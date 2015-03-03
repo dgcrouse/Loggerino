@@ -27,7 +27,7 @@ To add Loggerino to your application, copy the usbSerialForAndroid and loggerino
     compile project(':loggerino')
 
 Make sure your settings.gradle includes the module:
-    include ':app', ':loggerino', ':usbSerialForAndroid'
+    `include ':app', ':loggerino', ':usbSerialForAndroid'`
 
 The Logger class is drop-in compatible with Android `Log`, just make sure to get an instance of the singleton with `getLogger(Context)`. `Log.*` calls can now be replaced with `<logger instance>.*` calls. Look around Logger, you can also specify different short and long messages to send to Arduino.
 
