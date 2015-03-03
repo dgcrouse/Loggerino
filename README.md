@@ -24,7 +24,7 @@ If anything goes wrong, just reset the Arduino and all will be fine.
 #Adding to Your Application
 
 To add Loggerino to your application, copy the usbSerialForAndroid and loggerino folders to your application. To your main app (in the app folder) build.gradle, add the following line under 'Dependencies'
-    compile project(':loggerino')
+    `compile project(':loggerino')`
 
 Make sure your settings.gradle includes the module:
     `include ':app', ':loggerino', ':usbSerialForAndroid'`
