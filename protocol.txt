@@ -1,0 +1,47 @@
+Protocol Description Document:
+
+16 bit integers are written low-order byte first
+All command bytes are from ASCII command set
+
+Any ACK can be substituted for a NAK, which resends entire transmission, or CAN, which cancels transmission
+
+Syncing:
+    Currently, the Arduino will initiate syncing. Trying to have either party do it was a bit complicated
+    starting out. Syncing makes sure both parties are on the same page.
+
+    Arduino: ENQ
+
+    Android: SYN
+
+    Arduino: ACK SOH <width of display in chars 8-bit> EOT
+
+    Android: ACK
+
+Log from Android to Arduino:
+
+    Android: SOH <Protocol version 8-bit> <Log type 8-bit (E/I/W/D)> <Message Type 8-bit (0x01 short, 0x02 long)>
+    <Message ID 16 bit> <Message length 16-bit> ETB
+
+    Arduino: ACK
+
+    Android: STX <Message, length len> ETX EOT
+
+    Arduino: ACK
+
+Command from Arduino to Android:
+
+    Arduino: SOH <Protocol version 8-bit> <Command type 8-bit> <Data length 8-bit> <ETB>
+
+    Android: ACK
+
+    Arduino: STX <Data, length len> ETX EOT
+
+Current Command Set:
+    'P': len 3, Data: <ID at top of page 16-bit> <Number of entries to send>
+        Gets a page of log entries starting at given ID
+    
+    'E', len 2, Data: <ID of entry 16-bit>
+        Gets an expanded entry for a given ID
+        
+    'R': len 1, Data: <dummy byte>
+        Resume scrolling through entries

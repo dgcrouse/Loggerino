@@ -61,7 +61,7 @@ public class Logger {
     // Exception logs
     public void e(String tag, String shortMsg, String longMsg){
         Log.e(tag,longMsg);
-        keeper.sendLog(tag, shortMsg, longMsg,LogKeeper.LogType.D);
+        keeper.sendLog(tag, shortMsg, longMsg,LogKeeper.LogType.E);
     }
 
     public void e(String tag, String shortMsg, Exception ex){
@@ -89,7 +89,7 @@ public class Logger {
 
     public void i(String tag, String shortMsg, Exception ex){
         Log.i(tag,shortMsg,ex);
-        keeper.sendLog(tag,shortMsg,ex.getLocalizedMessage(),LogKeeper.LogType.E);
+        keeper.sendLog(tag,shortMsg,ex.getLocalizedMessage(),LogKeeper.LogType.I);
     }
 
     public void i(String tag, Exception ex){
@@ -114,6 +114,45 @@ public class Logger {
 
     public void w(String tag, Exception ex){
         w(tag,ex.getCause().getClass().getName(),ex);
+    }
+
+    // Verbose logs
+    public void v(String tag, String shortMsg, String longMsg){
+        Log.v(tag,longMsg);
+        keeper.sendLog(tag,shortMsg,longMsg,LogKeeper.LogType.V);
+    }
+
+    public void v(String tag, String longMsg){
+        v(tag,longMsg,longMsg);
+    }
+
+    public void v(String tag, String shortMsg, Exception ex){
+        Log.v(tag,shortMsg,ex);
+        keeper.sendLog(tag,shortMsg,ex.getLocalizedMessage(),LogKeeper.LogType.V);
+    }
+
+    public void v(String tag, Exception ex){
+        v(tag,ex.getCause().getClass().getName(),ex);
+    }
+
+
+    // WTF logs
+    public void wtf(String tag, String shortMsg, String longMsg){
+        Log.wtf(tag,longMsg);
+        keeper.sendLog(tag,shortMsg,longMsg,LogKeeper.LogType.WTF);
+    }
+
+    public void wtf(String tag, String longMsg){
+        wtf(tag,longMsg,longMsg);
+    }
+
+    public void wtf(String tag, String shortMsg, Exception ex){
+        Log.wtf(tag,shortMsg,ex);
+        keeper.sendLog(tag,shortMsg,ex.getLocalizedMessage(),LogKeeper.LogType.WTF);
+    }
+
+    public void wtf(String tag, Exception ex){
+        v(tag,ex.getCause().getClass().getName(),ex);
     }
 
 }

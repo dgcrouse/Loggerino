@@ -43,7 +43,7 @@ public class LogKeeper {
 
 // The different types of logs that are available
     public enum LogType{
-        E,D,I,W
+        E,D,I,W,V,WTF
     }
 
     // The different states the logger can be in
@@ -663,6 +663,12 @@ public class LogKeeper {
                     break;
                 case W:
                     header[2] = 'W';
+                    break;
+                case V:
+                    header[2] = 'V';
+                    break;
+                case WTF:
+                    header[2] = 'T';
                     break;
             }
             header[3] = msgType;

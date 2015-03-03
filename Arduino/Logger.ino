@@ -477,6 +477,14 @@ INT16U typeToColor(char typecode){
         case 'W':
             msg_color = BLUE;
         break;
+        case 'V':
+            msg_color = GREEN;
+        break;
+        case 'T':
+        // WTF
+            msg_color = BRIGHT_RED;
+        break;
+        case 'I':
         default:
             msg_color = WHITE;
     }
